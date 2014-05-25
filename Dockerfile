@@ -13,8 +13,8 @@ RUN curl -L http://www.opscode.com/chef/install.sh | bash
 
 RUN echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-RUN ${CHEF_BIN}/gem install berkshelf
+#RUN ${CHEF_BIN}/gem install berkshelf
 
-RUN cd ${CHECK_REPO} && ${CHEF_BIN}/berks vendor ${CHEF_REPO}/cookbooks
+#RUN cd ${CHECK_REPO} && ${CHEF_BIN}/berks vendor ${CHEF_REPO}/cookbooks
 
 RUN cd ${CHEF_REPO} && chef-solo -c ${CHEF_REPO}/solo.rb -j ${CHEF_REPO}/nodes/docker.json
