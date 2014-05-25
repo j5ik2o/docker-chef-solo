@@ -1,6 +1,8 @@
 FROM ubuntu:12.10
 
-ENV CHEFHOME /chef-repo
+ENV CHEF_BIN /opt/chef/embedded/bin
+ENV CHEF_REPO /chef-repo
+
 ADD chef-repo /chef-repo
 
 RUN apt-get -y update
@@ -11,8 +13,8 @@ RUN curl -L http://www.opscode.com/chef/install.sh | bash
 
 RUN echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-RUN /opt/chef/embedded/bin/gem install berkshelf
+RUN ${CHEF_BIN}/gem install berkshelf
 
-RUN cd /chef-repo && /opt/chef/embedded/bin/berks vendor /chef-repo/cookbooks
+RUN cd ${CHECK_REPO} && ${CHEF_BIN}/berks vendor ${CHEF_REPO}/cookbooks
 
-RUN cd ${CHEFHOME} && chef-solo -c ${CHEFHOME}/solo.rb -j ${CHEFHOME}/nodes/docker.json
+RUN cd ${CHEF_REPO} && chef-solo -c ${CHEF_REPO}/solo.rb -j ${CHEF_REPO}/nodes/docker.json
