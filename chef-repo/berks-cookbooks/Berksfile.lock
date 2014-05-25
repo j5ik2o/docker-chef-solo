@@ -1,7 +1,0 @@
-DEPENDENCIES
-  apt
-  mysql
-
-GRAPH
-  apt (2.4.0)
-  mysql (5.2.12)

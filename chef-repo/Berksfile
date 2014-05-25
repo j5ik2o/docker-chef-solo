@@ -1,4 +1,6 @@
 site :opscode
 
 cookbook 'apt'
-cookbook 'mysql'
+cookbook 'build-essential'
+cookbook 'apache2'
+cookbook 'git'
